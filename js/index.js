@@ -10,3 +10,6 @@ const changeTaskListBackground = (target) => {
     const changeColor = document.getElementById('taskListArea');
     changeColor.style.backgroundColor = target.style.backgroundColor;
 };
+
+let t = new TaskManager();
+console.log(t.currentId);
