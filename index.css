@@ -1,21 +1,21 @@
-:root{
-    --todoBackgroundColor:rgb(244, 208, 255);
-    --doingBackgroundColor:rgb(193, 112, 189);
-    --doneBackgroundColor:rgb(136, 57, 151);
+:root {
+    --todoBackgroundColor: rgb(244, 208, 255);
+    --doingBackgroundColor: rgb(193, 112, 189);
+    --doneBackgroundColor: rgb(136, 57, 151);
 }
 
 .modal-header {
-	color:black;
+    color: black;
     background-color: var(--todoBackgroundColor);
 }
 
-.modal-body{
-background-color: var(--todoBackgroundColor);
-border-bottom-left-radius: 0.3rem;
-border-bottom-right-radius: 0.3rem;
+.modal-body {
+    background-color: var(--todoBackgroundColor);
+    border-bottom-left-radius: 0.3rem;
+    border-bottom-right-radius: 0.3rem;
 }
 
-#taskListArea{
+#taskListArea {
     margin: 50px auto;
     width: 80vw;
     height: 60vh;
@@ -23,7 +23,7 @@ border-bottom-right-radius: 0.3rem;
     border-radius: 16px;
 }
 
-#pendingArea{
+#pendingArea {
     margin: auto;
     margin-top: 70px;
     width: 90%;
@@ -31,36 +31,73 @@ border-bottom-right-radius: 0.3rem;
     background-color: rgb(255, 255, 255);
     border-radius: 16px;
 }
-#todoTitle{
+
+#todoTitle {
     width: 33.333%;
     background-color: var(--todoBackgroundColor);
     border-radius: 16px 8px 0px 0px;
 }
-#doingTitle{
+
+#doingTitle {
     width: 33.333%;
     background-color: var(--doingBackgroundColor);
     border-radius: 8px 8px 0px 0px;
 }
-#doneTitle{
+
+#doneTitle {
     width: 33.333%;
     background-color: var(--doneBackgroundColor);
     border-radius: 8px 16px 0px 0px;
 }
-.titleText{
+
+.assignToBox>div>a {
+    border-radius: 12px;
+    background-color: red;
+
+
+}
+
+.listTask {
+    background: #F2EAF5;
+    border: 1px solid rgba(215, 189, 226, 0.32);
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.25);
+    border-radius: 24px;
+}
+
+.listPriority {
+    background: #F24A4A;
+    border: 1px solid rgba(215, 189, 226, 0.32);
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.25);
+    border-radius: 24px;
+}
+
+.titleColour {
+    background-color: blue;
+    box-sizing: border-box;
+
+    background: #F2EAF5;
+    border: 0px solid rgba(215, 189, 226, 0.32);
+
+
+}
+
+.titleText {
     margin-top: 22px;
     text-align: center;
 }
-.taskListTitle{
+
+.taskListTitle {
     display: inline-flex;
     width: 100%;
     height: 80px;
 }
-.taskForm-title{
-margin-left: auto;
+
+.taskForm-title {
+    margin-left: auto;
 }
 
-.btn{
-    border-radius: 20px !important; 
+.btn {
+    border-radius: 20px !important;
 }
 
 .css-button {
@@ -74,9 +111,9 @@ margin-left: auto;
     font-size: 5px;
     margin: 4px 2px;
     border-radius: 20px;
-  }
-  
-  .css-button2 {
+}
+
+.css-button2 {
     background-color: #ffff00;
     border: none;
     color: white;
@@ -87,9 +124,9 @@ margin-left: auto;
     font-size: 5px;
     margin: 4px 2px;
     border-radius: 20px;
-  }
-  
-  .css-button3 {
+}
+
+.css-button3 {
     background-color: #ff0000;
     border: none;
     color: white;
@@ -100,10 +137,16 @@ margin-left: auto;
     font-size: 5px;
     margin: 4px 2px;
     border-radius: 20px;
-  }
-  
-  .css-button:focus,
-  .css-button2:focus,
-  .css-button3:focus {
+}
+
+.css-button:focus,
+.css-button2:focus,
+.css-button3:focus {
     border: 2px solid #0022ff;
-  }
+}
+
+.taskListText {
+    font-size: 8px;
+    margin-left: 0px;
+    margin-top: 2px;
+}
