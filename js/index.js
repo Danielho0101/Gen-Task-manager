@@ -52,9 +52,10 @@ function addNewTask() {
   //   validFormFieldInput(description) &&
   //   validFormFieldInput(priority) &&
   //   validFormFieldInput(assignedTo)) {
-    myTaskManager.addTask(name, title, startTime, startDate, dueTime, dueDate, description, priority, assignedTo);
-    myTaskManager.render("TODO");
-    clearFormInput();
+  myTaskManager.addTask(name, title, startTime, startDate, dueTime, dueDate, description, priority, assignedTo);
+  myTaskManager.render("TODO");
+  clearFormInput();
+
   //   alert("Task Added !!");
   // }
   // else {
