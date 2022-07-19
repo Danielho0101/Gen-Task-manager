@@ -29,11 +29,18 @@
 
 #pendingArea {
     margin: auto;
-    margin-top: 70px;
+    margin-top: 50px;
     width: 90%;
-    height: 60%;
+    height: 70%;
     background-color: rgb(255, 255, 255);
     border-radius: 16px;
+    overflow: hidden;
+}
+
+#dataArea {
+    height: 100%;
+    overflow: auto;
+    padding-bottom: 50px;
 }
 
 #todoTitle {
@@ -111,10 +118,12 @@
 }
 
 .css-button {
+    width: 25px;
+    height: 25px;
     background-color: #04AA6D;
     border: none;
     color: white;
-    padding: 10px;
+    padding: 5px;
     text-align: center;
     text-decoration: none;
     display: inline-block;
@@ -124,10 +133,12 @@
 }
 
 .css-button2 {
+    width: 25px;
+    height: 25px;
     background-color: #ffff00;
     border: none;
     color: white;
-    padding: 10px;
+    padding: 5px;
     text-align: center;
     text-decoration: none;
     display: inline-block;
@@ -137,10 +148,12 @@
 }
 
 .css-button3 {
+    width: 25px;
+    height: 25px;
     background-color: #ff0000;
     border: none;
     color: white;
-    padding: 10px;
+    padding-top: 5px;
     text-align: center;
     text-decoration: none;
     display: inline-block;

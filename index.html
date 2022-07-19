@@ -50,82 +50,44 @@
       </div>
 
     </div>
+
     <div id="pendingArea">
+
       <div class="row align-items-start" style="margin-left:0px">
+
         <div class="col-1">
           <div class="row titleColour" style="border-radius: 12px 0px 0px 0px;border-left:2px">
-
-            <p style="margin-left:1px">Name</p>
+            <p style="margin-left:8px">Name</p>
           </div>
-          <div class="row ">
-            <div class="Name" style="margin-left:1px">
-              <p>Louis</p>
-            </div>
-          </div>
-
 
         </div>
         <div class="col-3">
           <div class="row titleColour">
             <p>Task</p>
           </div>
-          <div class="row">
-            <div class="listTask rounded taskListText">Send Feedback to designer</div>
-          </div>
-
-
         </div>
+
         <div class="col-2">
           <div class="row titleColour">
             <p>Start day </p>
           </div>
-          <div class="row">
-            <div class=" listTask startDayBox taskListText">
-
-
-              <div class="startDay taskListText">13/05/2021</div>
-            </div>
-          </div>
-
-
         </div>
+
         <div class="col-2">
           <div class="row titleColour">
             <p>Due day</p>
           </div>
-          <div class="row">
-            <div class="listTask dueDayBox taskListText">
-
-
-              <div class="dueDayTime taskListText"> 20/05/2021</div>
-              <!-- <div class="dueDay"> <p>20/05/2021</p></div> -->
-            </div>
-          </div>
-
         </div>
+
         <div class="col-1">
           <div class="row titleColour">
             <p>Priority</p>
-          </div>
-          <div class="row">
-            <div class="listPriority priorityBox rounded taskListText">high</div>
-
           </div>
         </div>
 
         <div class="col-1">
           <div class="row titleColour">
             <p>Assign</p>
-          </div>
-          <div class="row">
-            <div class=" col-12 assignToBox">
-              <div class="row taskListText">
-                <a> M </a><a> D </a><a> S </a><a> W </a>
-              </div>
-              <!-- <div><p>D</p></div>
-                  <div><p>S</p></div>
-                  <div><p>W</p></div> -->
-            </div>
           </div>
         </div>
 
@@ -134,22 +96,89 @@
             <!-- not show in finial  -->
             <div class="col-12 titleColour">
               <p>Add/Del</p>
-
             </div>
-            <button style="border: none; background: none;" type="button" data-toggle="modal"
-              data-target="#exampleModal">
-              <img src="photo/tasksIcon/Vector0.png" style="width: 30px; height:30px">
-            </button>
-
-            <button style="border: none; background: none;">
-              <img src="photo/tasksIcon/Vector1.png" style="width: 30px; height:30px">
-            </button>
           </div>
         </div>
       </div>
+
+      <div id="dataArea">
+
+        <div class="row align-items-start" style="margin-left:0px">
+          <div class="col-1">
+            <div class="row ">
+              <div class="Name" style="margin-left:8px">
+                <p>Louis</p>
+              </div>
+            </div>
+
+          </div>
+          <div class="col-3">
+            <div class="row">
+              <div class="listTask rounded taskListText">Send Feedback to designer</div>
+            </div>
+
+
+          </div>
+          <div class="col-2">
+            <div class="row">
+              <div class=" listTask startDayBox taskListText">
+                <div class="startDay taskListText">13/05/2021</div>
+              </div>
+            </div>
+
+
+          </div>
+          <div class="col-2">
+
+            <div class="row">
+              <div class="listTask dueDayBox taskListText">
+                <div class="dueDayTime taskListText"> 20/05/2021</div>
+                <!-- <div class="dueDay"> <p>20/05/2021</p></div> -->
+              </div>
+            </div>
+
+          </div>
+          <div class="col-1">
+            <div class="row">
+              <div class="listPriority priorityBox rounded taskListText">high</div>
+
+            </div>
+          </div>
+
+          <div class="col-1">
+            <div class="row">
+              <div class=" col-12 assignToBox">
+                <div class="row taskListText">
+                  <a> M </a><a> D </a><a> S </a><a> W </a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-2">
+            <div class="row" style="margin-right:0px;border-radius: 0px 12px 0px 0px;">
+              <!-- not show in finial  -->
+
+              <button style="border: none; background: none;" type="button" data-toggle="modal"
+                data-target="#exampleModal">
+                <img src="photo/tasksIcon/Vector0.png" style="width: 30px; height:30px">
+              </button>
+
+              <button style="border: none; background: none;">
+                <img src="photo/tasksIcon/Vector1.png" style="width: 30px; height:30px">
+              </button>
+            </div>
+          </div>
+        </div>
+
+      </div>
     </div>
+
     <div id="doingArea"> </div>
     <div id="doneArea"> </div>
+
+
+
 
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog">
@@ -161,9 +190,7 @@
             </button>
           </div>
           <div class="modal-body d-flex justify-content-between">
-
             <button type="button" class="close">
-
             </button>
           </div>
 
@@ -171,56 +198,59 @@
             <form id="modal-form">
               <label for="taskName">
                 <h5>Name </h5>
-                <span><input type="text"></span>
+                <span><input type="text" id="nameInput"></span>
               </label>
               <hr>
               <label for="taskTitle">
                 <h5>Title </h5>
-                <span><input type="text"></span>
+                <span><input type="text" id="titleInput"></span>
               </label>
               <hr>
               <label for="taskDueTime">
                 <h5>Due time</h5>
               </label>
 
-              <label class="due-date">
-                <input type="time" id="startTime" name="startTime">
-                <input type="date" data-display-mode="inline" data-is-range="true" data-close-on-select="false">
-                To
+              <br>
 
-                <input type="time" id="endTime" name="endTime">
-                <input type="date" data-display-mode="inline" data-is-range="true" data-close-on-select="false">
+              <input type="time" id="startTimeInput" name="endTime">
+              <input type="date" id="startDateInput" data-display-mode="inline" data-is-range="true"
+                data-close-on-select="false">
+
+              To
+
+              <input type="time" id="dueTimeInput" name="endTime">
+              <input type="date" id="dueDateInput" data-display-mode="inline" data-is-range="true"
+                data-close-on-select="false">
               </label>
               <br>
 
               <div class="form-group">
                 <label for="Detail" class="col-form-label"></label>
-                <textarea class="form-control" id="message-text" placeholder="Description"
+                <textarea class="form-control" id="description" placeholder="Description"
                   onfocus="this.placeholder = ''"></textarea>
               </div>
 
 
-              <h5 class="progress-text">
-                <span>Priority
-                  <button type="button" class="css-button"></button>
-                  <button type="button" class="css-button2"></button>
-                  <button type="button" class="css-button3"></button>
+              <h5 class="priority">
+                <span id="priorityInput">Priority:
+                  <input type="radio" name="priority" id="green" class="css-button" value="Low">Low
+                  <input type="radio" name="priority" id="yellow" class="css-button2" value="Medium">Medium
+                  <input type="radio" name="priority" id="red" class="css-button3" value="High">High
                 </span>
               </h5>
-
               <h5 class="assignTo">
-                <span>Assign To
-                  <button type="button" class="rounded-pill">Mars</button>
-                  <button type="button" class="rounded-pill">Wing</button>
-                  <button type="button" class="rounded-pill">Daniel</button>
-                  <button type="button" class="rounded-pill">Samuel</button>
+                <span>Assign To:
+                  <button type="button" id="" class="rounded-pill">Mars</button>
+                  <button type="button" id="" class="rounded-pill">Wing</button>
+                  <button type="button" id="" class="rounded-pill">Daniel</button>
+                  <button type="button" id="" class="rounded-pill">Samuel</button>
                 </span>
               </h5>
               <hr>
 
               <div class="text-center">
-                <button type="submit" value="Submit" form="modal-form" class="btn btn-dark"
-                  data-dismiss="modal">Summit</button>
+                <button type="submit" onclick="add()" class="btn btn-dark" form="modal-form"
+                  data-dismiss="modal">Submit</button>
               </div>
             </form>
           </div>
