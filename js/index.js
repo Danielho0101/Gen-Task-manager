@@ -25,7 +25,7 @@ const newTaskDueDate = document.querySelector("#dueDateInput");
 const radioButtons = document.querySelectorAll('input[name="priority"]');
 const newTaskAssignedTo = document.querySelector("#assignTo");
 
-function add() {
+function addNewTask() {
   const name = newTaskNameInput.value;
   const title = newTaskTitle.value;
   const description = newTaskDescription.value;
@@ -56,6 +56,7 @@ function add() {
     myTaskManager.render("TODO");
     clearFormInput();
     alert("Task Added !!");
+    myTaskManager.getTaskArr();
   }
   else {
     alert("Please Enter All Data !!");
@@ -71,3 +72,8 @@ function validFormFieldInput(data) {
 }
 
 
+function deleteTask(id) {
+  myTaskManager.deleteTask(id);
+  myTaskManager.render();
+  myTaskManager.getTaskArr();
+}
