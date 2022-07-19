@@ -128,30 +128,31 @@ class TaskManager {
   getTaskArr() {
     console.log(this.tasks.length, this.tasks, this.tasks.length >= 1);
   }
-  render() {
+  render(status = "TODO") {
     const tasksHtmlList = [];
     const tasksList = document.querySelector("#dataArea");
 
     tasksList.innerHTML = "";
-    for (let i = 0; i < this.tasks.length; i++) {
-      const task = this.tasks[i];
-      const taskHtml = createTaskHTML(
-        task.id,
-        task.name,
-        task.title,
-        task.startDate,
-        task.dueDate,
-        task.priority,
-        task.assignedTo,
-      );
+    if (status === "TODO")
+      for (let i = 0; i < this.tasks.length; i++) {
+        const task = this.tasks[i];
+        const taskHtml = createTaskHTML(
+          task.id,
+          task.name,
+          task.title,
+          task.startDate,
+          task.dueDate,
+          task.priority,
+          task.assignedTo,
+        );
 
-      tasksHtmlList.push(taskHtml);
+        tasksHtmlList.push(taskHtml);
 
-      const tasksHtml = tasksHtmlList.join("\n");
+        const tasksHtml = tasksHtmlList.join("\n");
 
 
-      tasksList.innerHTML = tasksHtml;
-    }
+        tasksList.innerHTML = tasksHtml;
+      }
   }
 
   save() {

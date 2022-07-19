@@ -43,23 +43,23 @@ function addNewTask() {
     }
   }
 
-  if (validFormFieldInput(name) &&
-    validFormFieldInput(title) &&
-    validFormFieldInput(startTime) &&
-    validFormFieldInput(startDate) &&
-    validFormFieldInput(dueTime) &&
-    validFormFieldInput(dueDate) &&
-    validFormFieldInput(description) &&
-    validFormFieldInput(priority) &&
-    validFormFieldInput(assignedTo)) {
-    myTaskManager.addTask(name, title, startTime, startDate, dueTime, dueDate, description, priority, assignedTo);
-    myTaskManager.render("TODO");
-    clearFormInput();
-    alert("Task Added !!");
-  }
-  else {
-    alert("Please Enter All Data !!");
-  }
+  // if (validFormFieldInput(name) &&
+  //   validFormFieldInput(title) &&
+  //   validFormFieldInput(startTime) &&
+  //   validFormFieldInput(startDate) &&
+  //   validFormFieldInput(dueTime) &&
+  //   validFormFieldInput(dueDate) &&
+  //   validFormFieldInput(description) &&
+  //   validFormFieldInput(priority) &&
+  //   validFormFieldInput(assignedTo)) {
+  myTaskManager.addTask(name, title, startTime, startDate, dueTime, dueDate, description, priority, assignedTo);
+  myTaskManager.render("TODO");
+  clearFormInput();
+  //   alert("Task Added !!");
+  // }
+  // else {
+  //   alert("Please Enter All Data !!");
+  // }
 }
 
 function clearFormInput() {
