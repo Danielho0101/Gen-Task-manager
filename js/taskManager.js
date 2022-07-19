@@ -60,7 +60,7 @@ const createTaskHTML = (id, name, title, startDate, dueDate, priority, assignedT
                 <img src="photo/tasksIcon/Vector0.png" style="width: 30px; height:30px">
               </button>
 
-              <button style="border: none; background: none;">
+              <button style="border: none; background: none;" onclick=deleteTask(${id})>
                 <img src="photo/tasksIcon/Vector1.png" style="width: 30px; height:30px">
               </button>
             </div>
@@ -92,11 +92,30 @@ class TaskManager {
     this.tasks.push(task);
   }
 
-  // Create the deleteTask method
+  // // Create the deleteTask method
+  // deleteTask(taskId) {
+  //   // Create an empty array and store it in a new variable, newTasks
+  //   const newTasks = [];
+
+  //   // Loop over the tasks
+  //   for (let i = 0; i < this.tasks.length; i++) {
+  //     // Get the current task in the loop
+  //     const task = this.tasks[i];
+
+  //     // Check if the task id is not the task id passed in as a parameter
+  //     if (task.id !== taskId) {
+  //       // Push the task to the newTasks array
+  //       newTasks.push(task);
+  //     }
+  //   }
+
+  //   // Set this.tasks to newTasks
+  //   this.tasks = newTasks;
+  // }
+
   deleteTask(taskId) {
     // Create an empty array and store it in a new variable, newTasks
     const newTasks = [];
-
     // Loop over the tasks
     for (let i = 0; i < this.tasks.length; i++) {
       // Get the current task in the loop
@@ -127,28 +146,31 @@ class TaskManager {
     return foundTask;
   }
 
-  render(status) {
+  getTaskArr() {
+    console.log(this.tasks.length, this.tasks, this.tasks.length >= 1);
+  }
+  render() {
     const tasksHtmlList = [];
+    const tasksList = document.querySelector("#dataArea");
 
+    tasksList.innerHTML = "";
     for (let i = 0; i < this.tasks.length; i++) {
       const task = this.tasks[i];
-      if (task.status === status) {
-        const taskHtml = createTaskHTML(
-          task.id,
-          task.name,
-          task.title,
-          task.startDate,
-          task.dueDate,
-          task.priority,
-          task.assignedTo,
-        );
+      const taskHtml = createTaskHTML(
+        task.id,
+        task.name,
+        task.title,
+        task.startDate,
+        task.dueDate,
+        task.priority,
+        task.assignedTo,
+      );
 
-        tasksHtmlList.push(taskHtml);
-      }
+      tasksHtmlList.push(taskHtml);
 
       const tasksHtml = tasksHtmlList.join("\n");
 
-      const tasksList = document.querySelector("#dataArea");
+
       tasksList.innerHTML = tasksHtml;
     }
   }
