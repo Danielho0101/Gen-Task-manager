@@ -55,8 +55,7 @@ const createTaskHTML = (id, name, title, startDate, dueDate, priority, assignedT
             <div class="row" style="margin-right:0px;border-radius: 0px 12px 0px 0px;">
               <!-- not show in finial  -->
 
-              <button style="border: none; background: none;" type="button" data-toggle="modal"
-                data-target="#exampleModal">
+              <button style="border: none; background: none;" type="button">
                 <img src="photo/tasksIcon/Vector0.png" style="width: 30px; height:30px">
               </button>
 
@@ -76,7 +75,7 @@ class TaskManager {
 
   addTask(name, title, startTime, startDate, dueTime, dueDate, description, priority, assignedTo) {
     const task = {
-      id: this.currentId++,
+      id: this.currentId = this.tasks.length,
       name: name,
       title: title,
       startTime: startTime,
@@ -88,8 +87,10 @@ class TaskManager {
       priority: priority,
       status: "TODO",
     };
-
     this.tasks.push(task);
+    var storage = window.localStorage;
+    let input = task.id;
+    storage.setItem(input, JSON.stringify(task))
   }
 
   deleteTask(taskId) {
@@ -104,11 +105,14 @@ class TaskManager {
       if (task.id !== taskId) {
         // Push the task to the newTasks array
         newTasks.push(task);
+
       }
     }
 
     // Set this.tasks to newTasks
     this.tasks = newTasks;
+    var storage = window.localStorage;
+    storage.removeItem(taskId);
   }
 
   getTaskById(taskId) {
@@ -125,9 +129,6 @@ class TaskManager {
     return foundTask;
   }
 
-  getTaskArr() {
-    console.log(this.tasks.length, this.tasks, this.tasks.length >= 1);
-  }
   render(status = "TODO") {
     const tasksHtmlList = [];
     const tasksList = document.querySelector("#dataArea");
@@ -136,6 +137,7 @@ class TaskManager {
     if (status === "TODO")
       for (let i = 0; i < this.tasks.length; i++) {
         const task = this.tasks[i];
+
         const taskHtml = createTaskHTML(
           task.id,
           task.name,
@@ -145,42 +147,43 @@ class TaskManager {
           task.priority,
           task.assignedTo,
         );
-
         tasksHtmlList.push(taskHtml);
 
         const tasksHtml = tasksHtmlList.join("\n");
-
 
         tasksList.innerHTML = tasksHtml;
       }
   }
 
-  save() {
-    const tasksJson = JSON.stringify(this.tasks);
+  // save() {
+  //   const tasksJson = JSON.stringify(this.tasks);
 
-    localStorage.setItem("tasks", tasksJson);
+  //   localStorage.setItem("tasks", tasksJson);
 
-    const currentId = String(this.currentId);
+  //   const currentId = String(this.currentId);
 
-    localStorage.setItem("currentId", currentId);
-  }
+  //   localStorage.setItem("currentId", currentId);
+  // }
 
-  load() {
-    if (localStorage.getItem("tasks")) {
-      const tasksJson = localStorage.getItem("tasks");
+  // load() {
+  //   if (localStorage.getItem("tasks")) {
+  //     const tasksJson = localStorage.getItem("tasks");
 
-      this.tasks = JSON.parse(tasksJson);
-    }
+  //     this.tasks = JSON.parse(tasksJson);
+  //   }
 
-    if (localStorage.getItem("currentId")) {
-      const currentId = localStorage.getItem("currentId");
+  //   if (localStorage.getItem("currentId")) {
+  //     const currentId = localStorage.getItem("currentId");
 
-      this.currentId = Number(currentId);
+  //     this.currentId = Number(currentId);
+  //   }
+  // }
+
+  getLocalData() {
+    for (let i = 0; i < localStorage.length; i++) {
+      const task = JSON.parse(window.localStorage.getItem(i));
+      this.tasks.push(task);
     }
   }
 }
-
-
-
-
 
