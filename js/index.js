@@ -56,7 +56,6 @@ function addNewTask() {
     myTaskManager.render("TODO");
     clearFormInput();
     alert("Task Added !!");
-    myTaskManager.getTaskArr();
   }
   else {
     alert("Please Enter All Data !!");
@@ -71,9 +70,7 @@ function validFormFieldInput(data) {
   return data !== null && data !== "";
 }
 
-
 function deleteTask(id) {
   myTaskManager.deleteTask(id);
   myTaskManager.render();
-  myTaskManager.getTaskArr();
 }
