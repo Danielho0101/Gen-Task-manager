@@ -167,8 +167,3 @@
 .css-button3:focus {
     border: 2px solid #0022ff;
 }
-
-.startDate {
-    display: none;
-    visibility: hidden;
-}
