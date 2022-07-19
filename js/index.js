@@ -1,3 +1,5 @@
+const myTaskManager = new TaskManager();
+
 const todo = document.getElementById("todoTitle");
 const doing = document.getElementById("doingTitle");
 const done = document.getElementById("doneTitle");
@@ -10,205 +12,62 @@ const changeTaskListBackground = (target) => {
   const changeColor = document.getElementById("taskListArea");
   changeColor.style.backgroundColor = target.style.backgroundColor;
 };
-let time = document.getElementById("startTime");
-let date = document.getElementById("startDate");
-
-let timeValue;
-const getTime = (event) => {
-  event.preventDefault();
-  if (time.value) {
-    timeValue = time.value;
-  }
-};
 
 const newTaskForm = document.querySelector("#modal-form");
 
 const newTaskNameInput = document.querySelector("#nameInput");
 const newTaskTitle = document.querySelector("#titleInput");
 const newTaskDescription = document.querySelector("#description");
-const newTaskAssignedTo = document.querySelector("#newTaskAssignedTo");
+const newTaskStartTime = document.querySelector("#startTimeInput")
 const newTaskStartDate = document.querySelector("#startDateInput");
+const newTaskDueTime = document.querySelector("#dueTimeInput");
 const newTaskDueDate = document.querySelector("#dueDateInput");
-
 const radioButtons = document.querySelectorAll('input[name="priority"]');
+const newTaskAssignedTo = document.querySelector("#assignTo");
 
 function add() {
   const name = newTaskNameInput.value;
   const title = newTaskTitle.value;
+  const description = newTaskDescription.value;
+  const startTime = newTaskStartTime.value;
   const startDate = newTaskStartDate.value;
+  const dueTime = newTaskDueTime.value;
   const dueDate = newTaskDueDate.value;
-  let selectedPriority;
-  let priorityColor;
-  const addTarget = document.getElementById("dataArea");
+  let priority = '';
+  const assignedTo = newTaskAssignedTo.value;
 
   for (const radioButton of radioButtons) {
     if (radioButton.checked) {
-      selectedPriority = radioButton.value;
-      if (radioButton.value === "Low") {
-        priorityColor = "green";
-      } else if (radioButton.value === "Medium") {
-        priorityColor = "yellow";
-      } else {
-        priorityColor = "red";
-      }
+      priority = radioButton.value;
       break;
     }
   }
 
-  const newTaskElement = document.createElement("div");
-  newTaskElement.innerHTML = taskTemplate(
-    name,
-    title,
-    startDate,
-    dueDate,
-    priorityColor,
-    selectedPriority
-  );
-
-  addTarget.appendChild(newTaskElement);
+  if (validFormFieldInput(name) &&
+    validFormFieldInput(title) &&
+    validFormFieldInput(startTime) &&
+    validFormFieldInput(startDate) &&
+    validFormFieldInput(dueTime) &&
+    validFormFieldInput(dueDate) &&
+    validFormFieldInput(description) &&
+    validFormFieldInput(priority) &&
+    validFormFieldInput(assignedTo)) {
+    myTaskManager.addTask(name, title, startTime, startDate, dueTime, dueDate, description, priority, assignedTo);
+    myTaskManager.render("TODO");
+    clearFormInput();
+    alert("Task Added !!");
+  }
+  else {
+    alert("Please Enter All Data !!");
+  }
 }
 
-// function validFormFieldInput(data) {
-//   return data !== null && data !== "";
-// }
+function clearFormInput() {
+  document.getElementById("modal-form").reset();
+}
 
-const taskTemplate = (name, title, startDate, dueDate, color, priority) => {
-  return `
-  <div class="row align-items-start" style="margin-left:0px">
-  <div class="col-1">
-    <div class="row ">
-      <div class="Name" style="margin-left:8px">
-        <p>${name}</p>
-      </div>
-    </div>
-
-  </div>
-  <div class="col-3">
-    <div class="row">
-      <div class="listTask rounded taskListText">${title}</div>
-    </div>
+function validFormFieldInput(data) {
+  return data !== null && data !== "";
+}
 
 
-  </div>
-  <div class="col-2">
-    <div class="row">
-      <div class=" listTask startDayBox taskListText">
-        <div class="startDay taskListText">${startDate}</div>
-      </div>
-    </div>
-
-
-  </div>
-  <div class="col-2">
-
-    <div class="row">
-      <div class="listTask dueDayBox taskListText">
-        <div class="dueDayTime taskListText">${dueDate}</div>
-      </div>
-    </div>
-
-  </div>
-  <div class="col-1">
-    <div class="row">
-      <div class="listPriority priorityBox rounded taskListText" style="background-color:${color}">${priority}</div>
-
-    </div>
-  </div>
-
-  <div class="col-1">
-    <div class="row">
-      <div class=" col-12 assignToBox">
-        <div class="row taskListText">
-          <a> M </a><a> D </a><a> S </a><a> W </a>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="col-2">
-    <div class="row" style="margin-right:0px;border-radius: 0px 12px 0px 0px;">
-      <!-- not show in finial  -->
-
-      <button style="border: none; background: none;" type="button" data-toggle="modal"
-        data-target="#exampleModal">
-        <img src="photo/tasksIcon/Vector0.png" style="width: 30px; height:30px">
-      </button>
-
-      <button style="border: none; background: none;">
-        <img src="photo/tasksIcon/Vector1.png" style="width: 30px; height:30px">
-      </button>
-    </div>
-  </div>
-</div>`;
-};
-
-const addTest = () => {
-  return `<div class="row align-items-start" style="margin-left:0px">
-    <div class="col-1">
-      <div class="row ">
-        <div class="Name" style="margin-left:8px">
-          <p>Louis</p>
-        </div>
-      </div>
-
-    </div>
-    <div class="col-3">
-      <div class="row">
-        <div class="listTask rounded taskListText">Send Feedback to designer</div>
-      </div>
-
-
-    </div>
-    <div class="col-2">
-      <div class="row">
-        <div class=" listTask startDayBox taskListText">
-          <div class="startDay taskListText">13/05/2021</div>
-        </div>
-      </div>
-
-
-    </div>
-    <div class="col-2">
-
-      <div class="row">
-        <div class="listTask dueDayBox taskListText">
-          <div class="dueDayTime taskListText"> 20/05/2021</div>
-          <!-- <div class="dueDay"> <p>20/05/2021</p></div> -->
-        </div>
-      </div>
-
-    </div>
-    <div class="col-1">
-      <div class="row">
-        <div class="listPriority priorityBox rounded taskListText">high</div>
-
-      </div>
-    </div>
-
-    <div class="col-1">
-      <div class="row">
-        <div class=" col-12 assignToBox">
-          <div class="row taskListText">
-            <a> M </a><a> D </a><a> S </a><a> W </a>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="col-2">
-      <div class="row" style="margin-right:0px;border-radius: 0px 12px 0px 0px;">
-        <!-- not show in finial  -->
-
-        <button style="border: none; background: none;" type="button" data-toggle="modal"
-          data-target="#exampleModal">
-          <img src="photo/tasksIcon/Vector0.png" style="width: 30px; height:30px">
-        </button>
-
-        <button style="border: none; background: none;">
-          <img src="photo/tasksIcon/Vector1.png" style="width: 30px; height:30px">
-        </button>
-      </div>
-    </div>
-  </div>
-</div>`;
-};
