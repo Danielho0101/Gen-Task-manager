@@ -17,7 +17,7 @@ const createTaskHTML = (id, name, title, startDate, dueDate, priority, assignedT
             </div>
 
           </div>
-          <div class="col-3">
+          <div class="col-2">
             <div class="row">
               <div class="listTask rounded taskListText">${title}</div>
             </div>
@@ -30,9 +30,8 @@ const createTaskHTML = (id, name, title, startDate, dueDate, priority, assignedT
                 <div class="startDay taskListText">${startDate}</div>
               </div>
             </div>
-
-
           </div>
+
           <div class="col-2">
 
             <div class="row">
@@ -40,8 +39,8 @@ const createTaskHTML = (id, name, title, startDate, dueDate, priority, assignedT
                 <div class="dueDayTime taskListText">${dueDate}</div>
               </div>
             </div>
-
           </div>
+
           <div class="col-1">
             <div class="row">
               <div class="listPriority priorityBox rounded taskListText"
