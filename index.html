@@ -190,17 +190,17 @@
             <input type="time" id="dueTimeInput" name="endTime">
             <input type="date" id="dueDateInput" data-display-mode="inline" data-is-range="true"
               data-close-on-select="false">
-            </label>
+
             <br>
 
-            <div class="form-group">
-              <label for="Detail" class="col-form-label"></label>
-              <textarea class="form-control" id="description" placeholder="Description"
-                onfocus="this.placeholder = ''"></textarea>
-            </div>
+
+            <label for="Detail" class="col-form-label"></label>
+            <textarea class="form-control" id="description" placeholder="Description"
+              style="min-width:80% ; min-height: auto;" onfocus=" this.placeholder=''"></textarea>
 
 
-            <h6 class="priority">
+
+            <h6 class=" priority">
               <span id="priorityInput">Priority:
                 <input type="radio" name="priority" id="green" class="css-button" value="Low">Low
                 <input type="radio" name="priority" id="yellow" class="css-button" value="Medium">Medium
@@ -225,7 +225,7 @@
 
 
   <div class="modal fade" id="changeTaskModal" tabindex="-1" aria-labelledby="changeTaskModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
+    <div class="modal-dialog modal">
       <div class="modal-content">
         <div class="modal-header">
           <h2 class="taskForm-title" id="changeTaskModalLabel">Edit Task</h2>
