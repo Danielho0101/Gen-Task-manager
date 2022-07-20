@@ -99,7 +99,7 @@ class TaskManager {
     this.tasks.push(task);
     var storage = window.localStorage;
     let input = task.id;
-    storage.setItem(input, JSON.stringify(task))
+    storage.setItem(input, JSON.stringify(task));
   }
 
   changeTask(taskId, name, title, startTime, startDate, dueTime, dueDate, description, assignedTo, priority) {
@@ -128,7 +128,6 @@ class TaskManager {
       if (task.id !== taskId) {
         // Push the task to the newTasks array
         newTasks.push(task);
-
       }
     }
 
