@@ -42,6 +42,8 @@
       </div>
     </nav>
 
+
+
     <div class="container" style="display:flex; justify-content:flex-end;">
       <div class="collapse" id="navbarToggleExternalContent">
         <div>
@@ -131,7 +133,7 @@
           <div class="row" style="margin-right:0px;border-radius: 0px 12px 0px 0px;">
             <!-- not show in finial  -->
             <div class=" addDel col-12 titleColour">
-              <p>Add/Del</p>
+              <p>Edit/Del</p>
             </div>
           </div>
         </div>
@@ -164,17 +166,17 @@
         <div class="modal-body">
           <form id="modal-form">
             <label for="taskName">
-              <h5>Name </h5>
+              <h6>Name</h6>
               <span><input type="text" id="nameInput"></span>
             </label>
             <hr>
             <label for="taskTitle">
-              <h5>Title </h5>
+              <h6>Title</h6>
               <span><input type="text" id="titleInput"></span>
             </label>
             <hr>
             <label for="taskDueTime">
-              <h5>Due time</h5>
+              <h6>Due time</h6>
             </label>
 
             <br>
@@ -188,28 +190,28 @@
             <input type="time" id="dueTimeInput" name="endTime">
             <input type="date" id="dueDateInput" data-display-mode="inline" data-is-range="true"
               data-close-on-select="false">
-            </label>
+
             <br>
 
-            <div class="form-group">
-              <label for="Detail" class="col-form-label"></label>
-              <textarea class="form-control" id="description" placeholder="Description"
-                onfocus="this.placeholder = ''"></textarea>
-            </div>
+
+            <label for="Detail" class="col-form-label"></label>
+            <textarea class="form-control" id="description" placeholder="Description"
+              style="min-width:80% ; min-height: auto;" onfocus=" this.placeholder=''"></textarea>
 
 
-            <h5 class="priority">
+
+            <h6 class=" priority">
               <span id="priorityInput">Priority:
                 <input type="radio" name="priority" id="green" class="css-button" value="Low">Low
-                <input type="radio" name="priority" id="yellow" class="css-button2" value="Medium">Medium
-                <input type="radio" name="priority" id="red" class="css-button3" value="High">High
+                <input type="radio" name="priority" id="yellow" class="css-button" value="Medium">Medium
+                <input type="radio" name="priority" id="red" class="css-button" value="High">High
               </span>
-            </h5>
-            <h5 class="assignTo">
+            </h6>
+            <h6 class="assignTo">
               <span>Assign
                 <input type="text" name="assignTo" id="assignTo">
               </span>
-            </h5>
+            </h6>
             <hr>
 
             <div class="text-center">
@@ -226,7 +228,7 @@
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <h2 class="taskForm-title" id="changeTaskModalLabel">Change Task</h2>
+          <h2 class="taskForm-title" id="changeTaskModalLabel">Edit Task</h2>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
@@ -239,17 +241,17 @@
         <div class="modal-body">
           <form id="changeTaskModal-form">
             <label for="taskName">
-              <h5>Name </h5>
+              <h6>Name </h6>
               <span><input type="text" id="nameValue"></span>
             </label>
             <hr>
             <label for="taskTitle">
-              <h5>Title </h5>
+              <h6>Title </h6>
               <span><input type="text" id="titleValue"></span>
             </label>
             <hr>
             <label for="taskDueTime">
-              <h5>Due time</h5>
+              <h6>Due time</h6>
             </label>
 
             <br>
@@ -273,27 +275,27 @@
             </div>
 
 
-            <h5 class="priority">
+            <h6 class="priority">
               <span id="priorityValue">Priority:
                 <input type="radio" name="priorityValue" id="green" class="css-button" value="Low">Low
-                <input type="radio" name="priorityValue" id="yellow" class="css-button2" value="Medium">Medium
-                <input type="radio" name="priorityValue" id="red" class="css-button3" value="High">High
+                <input type="radio" name="priorityValue" id="yellow" class="css-button" value="Medium">Medium
+                <input type="radio" name="priorityValue" id="red" class="css-button" value="High">High
               </span>
-            </h5>
+            </h6>
 
-            <h5>
+            <h6>
               <span class="status">Status:
                 <input id="todoTasks" class="css-button" type="radio" name="statusValue" value="TODO">Todo
                 <input id="doingTasks" class="css-button" type="radio" name="statusValue" value="DOING">Doing
                 <input id="doneTasks" class="css-button" type="radio" name="statusValue" value="DONE">Done
               </span>
-            </h5>
+            </h6>
 
-            <h5 class="assignTo">
+            <h6 class="assignTo">
               <span>Assign To:
                 <input type="text" name="assignToValue" id="assignToValue">
               </span>
-            </h5>
+            </h6>
             <hr>
 
             <div class="text-center">
