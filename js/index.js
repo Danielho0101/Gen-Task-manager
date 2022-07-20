@@ -4,6 +4,7 @@ const todo = document.getElementById("todoTitle");
 const doing = document.getElementById("doingTitle");
 const done = document.getElementById("doneTitle");
 
+let currentTaskArea = "TODO";
 todo.style.backgroundColor = "rgb(244, 208, 255)";
 doing.style.backgroundColor = "rgb(193, 112, 189)";
 done.style.backgroundColor = "rgb(126, 55, 141)";
@@ -11,6 +12,17 @@ done.style.backgroundColor = "rgb(126, 55, 141)";
 const changeTaskListBackground = (target) => {
   const changeColor = document.getElementById("taskListArea");
   changeColor.style.backgroundColor = target.style.backgroundColor;
+
+  if (changeColor.style.backgroundColor === todo.style.backgroundColor) {
+    currentTaskArea = "TODO";
+    myTaskManager.render("TODO");
+  } else if (changeColor.style.backgroundColor === doing.style.backgroundColor) {
+    currentTaskArea = "DOING";
+    myTaskManager.render("DOING");
+  } else if (changeColor.style.backgroundColor === done.style.backgroundColor) {
+    currentTaskArea = "DONE";
+    myTaskManager.render("DONE");
+  }
 };
 
 const newTaskForm = document.querySelector("#modal-form");
@@ -66,7 +78,7 @@ function addNewTask() {
       priority,
       assignedTo
     );
-    myTaskManager.render();
+    myTaskManager.render(currentTaskArea);
     clearFormInput();
   } else {
     alert("Please Enter All Data !!");
@@ -83,12 +95,12 @@ function validFormFieldInput(data) {
 
 function deleteTask(id) {
   myTaskManager.deleteTask(id);
-  myTaskManager.render();
+  myTaskManager.render(currentTaskArea);
 }
 
 function getLocalData() {
   myTaskManager.getLocalData();
-  myTaskManager.render();
+  myTaskManager.render(currentTaskArea);
 }
 
 const taskName = document.querySelector("#nameValue");
@@ -102,6 +114,7 @@ const radioButtonsValue = document.querySelectorAll(
   'input[name="priorityValue"]'
 );
 const taskAssignedTo = document.querySelector("#assignToValue");
+const taskStatus = document.querySelectorAll('input[name="statusValue"]');
 
 function getTaskValue(id) {
   const task = myTaskManager.getTaskById(id);
@@ -114,6 +127,12 @@ function getTaskValue(id) {
   taskDueDate.value = task.dueDate;
   for (const radioButton of radioButtonsValue) {
     if (radioButton.value === task.priority) {
+      radioButton.checked = true;
+      break;
+    }
+  }
+  for (const radioButton of taskStatus) {
+    if (radioButton.value === task.status) {
       radioButton.checked = true;
       break;
     }
@@ -132,6 +151,13 @@ function changeTaskValue() {
     }
   }
 
+  for (const radioButton of taskStatus) {
+    if (radioButton.checked) {
+      taskStatus.value = radioButton.value;
+      break;
+    }
+  }
+
   myTaskManager.changeTask(
     id,
     taskName.value,
@@ -142,7 +168,8 @@ function changeTaskValue() {
     taskDueDate.value,
     taskDescription.value,
     taskAssignedTo.value,
-    priority
+    priority,
+    taskStatus.value
   );
 
   if (validFormFieldInput(taskName.value) &&
@@ -153,11 +180,12 @@ function changeTaskValue() {
     validFormFieldInput(taskDueDate.value) &&
     validFormFieldInput(taskDescription.value) &&
     validFormFieldInput(taskAssignedTo) &&
-    validFormFieldInput(priority)
+    validFormFieldInput(priority) &&
+    validFormFieldInput(taskStatus.value)
   ) {
     $("#changeTaskModal").modal("hide");
     window.sessionStorage.removeItem("id");
-    myTaskManager.render();
+    myTaskManager.render(currentTaskArea);
   }
   else {
     alert("Please Enter All Data !!");
@@ -165,17 +193,17 @@ function changeTaskValue() {
 }
 function makeRequest() {
   xhr = new XMLHttpRequest();
-  xhr.onload = function() {
+  xhr.onload = function () {
     var response = JSON.parse(this.responseText);
     var city = response.city.name + ", " + response.city.country;
     var weatherTitle = response.list[0].weather[0].main;
     var temp = response.list[0].main.temp + "°";
-    console.log(response);
+    // console.log(response);
     var weatherContainer = document.querySelector("#weather");
     weatherContainer.innerHTML = city + "<br/>" + weatherTitle + "<br/>" + temp;
   };
-  xhr.open('GET','https://api.openweathermap.org/data/2.5/forecast?id=1819729&APPID=9b898e3b150743754b329ad780adb2be&lang=zh_tw&units=metric', true );
-;
+  xhr.open('GET', 'https://api.openweathermap.org/data/2.5/forecast?id=1819729&APPID=9b898e3b150743754b329ad780adb2be&lang=zh_tw&units=metric', true);
+  ;
   xhr.send();
 }
 makeRequest();

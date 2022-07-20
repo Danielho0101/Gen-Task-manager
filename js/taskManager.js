@@ -70,69 +70,6 @@ const createTaskHTML = (
   </div>
 </div>`;
 };
-// return `<div class="row align-items-start" data-task-id="${id}" style="margin-left:0px">
-//         <div class="col-1">
-//           <div class="row ">
-//             <div class="Name" style="margin-left:8px">
-//               <p>${name}</p>
-//             </div>
-//           </div>
-
-//         </div>
-//         <div class="col-2">
-//           <div class="row">
-//             <div class="listTask rounded taskListText">${title}</div>
-//           </div>
-
-//         </div>
-//         <div class="col-2">
-//           <div class="row">
-//             <div class=" listTask startDayBox taskListText">
-//               <div class="startDay taskListText">${startDate}</div>
-//             </div>
-//           </div>
-//         </div>
-
-//         <div class="col-2">
-
-//           <div class="row">
-//             <div class="listTask dueDayBox taskListText">
-//               <div class="dueDayTime taskListText">${dueDate}</div>
-//             </div>
-//           </div>
-//         </div>
-
-//         <div class="col-1">
-//           <div class="row">
-//             <div class="listPriority priorityBox rounded taskListText"
-//             style="background-color:${color}">
-//             ${priority}</div>
-
-//           </div>
-//         </div>
-
-//         <div class="col-1">
-//           <div class="row">
-//             <div class=" col-12 assignToBox">
-//               <div class="row taskListText">${assignedTo}</div>
-//             </div>
-//           </div>
-//         </div>
-
-//         <div class="col-2">
-//           <div class="row" style="margin-right:0px;border-radius: 0px 12px 0px 0px;">
-
-//             <button style="border: none; background: none;" type="button" onclick=getTaskValue(${id})
-//             data-target="#changeTaskModal" data-toggle="modal">
-//               <img src="photo/tasksIcon/Vector0.png" style="width: 30px; height:30px">
-//             </button>
-
-//             <button style="border: none; background: none;" onclick=deleteTask(${id})>
-//               <img src="photo/tasksIcon/Vector1.png" style="width: 30px; height:30px">
-//             </button>
-//           </div>
-//         </div>
-//       </div>`;
 
 class TaskManager {
   constructor(currentId = 0) {
@@ -183,7 +120,8 @@ class TaskManager {
     dueDate,
     description,
     assignedTo,
-    priority
+    priority,
+    status
   ) {
     this.tasks[taskId].name = name;
     this.tasks[taskId].title = title;
@@ -194,6 +132,7 @@ class TaskManager {
     this.tasks[taskId].description = description;
     this.tasks[taskId].assignedTo = assignedTo;
     this.tasks[taskId].priority = priority;
+    this.tasks[taskId].status = status;
     const task = this.tasks[taskId];
     window.localStorage.setItem(taskId, JSON.stringify(task));
     // console.log("changeData" + JSON.stringify(this.tasks));
@@ -247,8 +186,9 @@ class TaskManager {
     const tasksList = document.querySelector("#dataArea");
 
     tasksList.innerHTML = "";
-    if (status === "TODO")
-      for (let i = 0; i < this.tasks.length; i++) {
+
+    for (let i = 0; i < this.tasks.length; i++) {
+      if (this.tasks[i].status === status) {
         this.tasks[i].id = i;
         this.currentId = this.tasks.length;
         const task = this.tasks[i];
@@ -262,11 +202,10 @@ class TaskManager {
           task.assignedTo
         );
         tasksHtmlList.push(taskHtml);
-
         const tasksHtml = tasksHtmlList.join("\n");
-
         tasksList.innerHTML = tasksHtml;
       }
+    }
   }
 
   getLocalData() {
