@@ -5,20 +5,25 @@
   <title>Task Planner</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;800&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" media="screen" href="style.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css"
+    integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
   <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
     integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
     crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF"
     crossorigin="anonymous"></script>
-  <link rel="stylesheet" href="style.css">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css"
-    integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
-
-
 </head>
 
 <body onload="getLocalData()">
+
   <div class="backgroudpicture">
     <nav class="navbar navbar-light bg-transparent">
       <div class="container">
@@ -26,7 +31,8 @@
         <div>
           <form class="form-inline my-2 my-lg-0">
             <input class="form-control mr-sm-2" type="search" placeholder="Search  yors tasks..." aria-label="Search">
-            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+            <button class="fa-solid fa-magnifying-glass toggle-btn"></button>
+
 
             <button class="navbar-toggler" style='margin-left:20px;' type="button" data-toggle="collapse"
               data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent"
@@ -37,9 +43,23 @@
         </div>
       </div>
     </nav>
+
+    <div class="container" style="display:flex; justify-content:flex-end;">
+      <div class="collapse" id="navbarToggleExternalContent">
+        <div>
+          <a class="dropdown-item" href="#">Home</a>
+          <a class="dropdown-item" href="#">About</a>
+          <a class="dropdown-item" href="#">Recent Tasks</a>
+          <a class="dropdown-item" href="#">Contact</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="container">
+    <button class="addTaskButton" data-target="#createTaskModal" data-toggle="modal">Add Task +</button>
   </div>
 
-  <button type="button" data-target="#createTaskModal" data-toggle="modal" style="margin-left:150px;">Create</button>
+  </div>
 
   <div id="taskListArea">
     <div class="taskListTitle">
@@ -57,48 +77,52 @@
 
     <div id="pendingArea">
 
-      <div class="row align-items-start" style="margin-left:0px">
 
-        <div class="col-1">
+      <div id="rowtitle" class="row align-items-start" style="margin-left:0px">
+
+        <div class="col-1 d-none d-md-block">
           <div class="row titleColour" style="border-radius: 12px 0px 0px 0px;border-left:2px">
-            <p style="margin-left:8px">Name</p>
+            <p style="margin-left:8px;">Name</p>
           </div>
 
         </div>
-        <div class="col-3">
+        <div class="col-md-3 col-3">
+
           <div class="row titleColour">
             <p>Task</p>
           </div>
         </div>
 
-        <div class="col-2">
+        <div class="col-2 startDay d-none d-md-block">
+
+
           <div class="row titleColour">
             <p>Start day </p>
           </div>
         </div>
 
-        <div class="col-2">
+        <div class="col-2 d-none d-md-block" id="dueDay">
           <div class="row titleColour">
             <p>Due day</p>
           </div>
         </div>
 
-        <div class="col-1">
+        <div class="col-md-1 col-3">
           <div class="row titleColour">
             <p>Priority</p>
           </div>
         </div>
 
-        <div class="col-1">
+        <div class="col-md-1 col-3">
           <div class="row titleColour">
             <p>Assign</p>
           </div>
         </div>
 
-        <div class="col-2">
+        <div class="col-md-2 col-3">
           <div class="row" style="margin-right:0px;border-radius: 0px 12px 0px 0px;">
             <!-- not show in finial  -->
-            <div class="col-12 titleColour">
+            <div class=" addDel col-12 titleColour">
               <p>Add/Del</p>
             </div>
           </div>
@@ -106,6 +130,85 @@
       </div>
 
       <div id="dataArea">
+
+        <div class="row align-items-start" style="margin-left:0px">
+          <div class="col-1 d-none d-md-block">
+            <div class="row ">
+              <div class="Name" style="margin-left:8px">
+                <p>Louis</p>
+              </div>
+            </div>
+
+          </div>
+          <div class="col-md-3 col-3">
+            <div class="row">
+              <div class="listTask rounded taskListText">Send Feedback to designer</div>
+            </div>
+
+
+          </div>
+          <div class="col-2 d-none d-md-block">
+            <div class="row">
+              <div class=" listTask startDayBox taskListText">
+                <div class="startDay taskListText">13/05/2021</div>
+              </div>
+            </div>
+
+
+          </div>
+          <div class="col-2 d-none d-md-block">
+
+            <div class="row">
+              <div class="listTask dueDayBox taskListText">
+                <div class="dueDayTime taskListText"> 20/05/2021</div>
+                <!-- <div class="dueDay"> <p>20/05/2021</p></div> -->
+              </div>
+            </div>
+
+          </div>
+          <div class="col-md-1 col-3">
+            <div class="row">
+              <div class="listPriority priorityBox rounded taskListText">high</div>
+
+            </div>
+          </div>
+
+          <div class="col-md-1 col-3">
+            <div class="row">
+              <div class=" col-12 assignToBox">
+                <div class="row taskListText">
+                  <a> M </a><a> D </a><a> S </a><a> W </a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-2 col-3">
+            <div class="row" style="margin-right:0px;border-radius: 0px 12px 0px 0px;">
+              <!-- not show in finial  -->
+
+              <button style="border: none; background: none;" type="button" data-toggle="modal"
+                data-target="#exampleModal">
+                <img src="photo/tasksIcon/Vector0.png" style="width: 30px; height:30px">
+              </button>
+
+              <button style="border: none; background: none;">
+                <img src="photo/tasksIcon/Vector1.png" style="width: 30px; height:30px">
+              </button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div id="doingArea"> </div>
+    <div id="doneArea"> </div>
+
+
+
+
+    
       </div>
 
       <div id="doingArea"> </div>
