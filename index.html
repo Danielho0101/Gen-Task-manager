@@ -22,7 +22,8 @@
     crossorigin="anonymous"></script>
 </head>
 
-<body>
+<body onload="getLocalData()">
+
   <div class="backgroudpicture">
     <nav class="navbar navbar-light bg-transparent">
       <div class="container">
@@ -31,6 +32,7 @@
           <form class="form-inline my-2 my-lg-0">
             <input class="form-control mr-sm-2" type="search" placeholder="Search  yors tasks..." aria-label="Search">
             <button class="fa-solid fa-magnifying-glass toggle-btn"></button>
+
 
             <button class="navbar-toggler" style='margin-left:20px;' type="button" data-toggle="collapse"
               data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent"
@@ -41,6 +43,7 @@
         </div>
       </div>
     </nav>
+
     <div class="container" style="display:flex; justify-content:flex-end;">
       <div class="collapse" id="navbarToggleExternalContent">
         <div>
@@ -53,8 +56,11 @@
     </div>
   </div>
   <div class="container">
-    <button class="addTaskButton">Add Task +</button>
+    <button class="addTaskButton" data-target="#createTaskModal" data-toggle="modal">Add Task +</button>
   </div>
+
+  </div>
+
   <div id="taskListArea">
     <div class="taskListTitle">
       <div id="todoTitle" onclick="changeTaskListBackground(this)">
@@ -71,6 +77,7 @@
 
     <div id="pendingArea">
 
+
       <div id="rowtitle" class="row align-items-start" style="margin-left:0px">
 
         <div class="col-1 d-none d-md-block">
@@ -80,12 +87,15 @@
 
         </div>
         <div class="col-md-3 col-3">
+
           <div class="row titleColour">
             <p>Task</p>
           </div>
         </div>
 
         <div class="col-2 startDay d-none d-md-block">
+
+
           <div class="row titleColour">
             <p>Start day </p>
           </div>
@@ -198,87 +208,169 @@
 
 
 
-    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h2 class="taskForm-title" id="exampleModalLabel">Add Task</h2>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <div class="modal-body d-flex justify-content-between">
-            <button type="button" class="close">
-            </button>
-          </div>
+    
+      </div>
 
-          <div class="modal-body">
-            <form id="modal-form">
-              <label for="taskName">
-                <h5>Name </h5>
-                <span><input type="text" id="nameInput"></span>
-              </label>
-              <hr>
-              <label for="taskTitle">
-                <h5>Title </h5>
-                <span><input type="text" id="titleInput"></span>
-              </label>
-              <hr>
-              <label for="taskDueTime">
-                <h5>Due time</h5>
-              </label>
-
-              <br>
-
-              <input type="time" id="startTimeInput" name="endTime">
-              <input type="date" id="startDateInput" data-display-mode="inline" data-is-range="true"
-                data-close-on-select="false">
-
-              To
-
-              <input type="time" id="dueTimeInput" name="endTime">
-              <input type="date" id="dueDateInput" data-display-mode="inline" data-is-range="true"
-                data-close-on-select="false">
-              </label>
-              <br>
-
-              <div class="form-group">
-                <label for="Detail" class="col-form-label"></label>
-                <textarea class="form-control" id="description" placeholder="Description"
-                  onfocus="this.placeholder = ''"></textarea>
-              </div>
+      <div id="doingArea"> </div>
+      <div id="doneArea"> </div>
 
 
-              <h5 class="priority">
-                <span id="priorityInput">Priority:
-                  <input type="radio" name="priority" id="green" class="css-button" value="Low">Low
-                  <input type="radio" name="priority" id="yellow" class="css-button2" value="Medium">Medium
-                  <input type="radio" name="priority" id="red" class="css-button3" value="High">High
-                </span>
-              </h5>
-              <h5 class="assignTo">
-                <span>Assign To:
-                  <button type="button" id="" class="rounded-pill">Mars</button>
-                  <button type="button" id="" class="rounded-pill">Wing</button>
-                  <button type="button" id="" class="rounded-pill">Daniel</button>
-                  <button type="button" id="" class="rounded-pill">Samuel</button>
-                </span>
-              </h5>
-              <hr>
+      <div class="modal fade" id="createTaskModal" tabindex="-1" aria-labelledby="createTaskModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h2 class="taskForm-title" id="createTaskModalLabel">Add Task</h2>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body d-flex justify-content-between">
+              <button type="button" class="close">
+              </button>
+            </div>
 
-              <div class="text-center">
-                <button type="submit" onclick="add()" class="btn btn-dark" form="modal-form"
-                  data-dismiss="modal">Submit</button>
-              </div>
-            </form>
+            <div class="modal-body">
+              <form id="modal-form">
+                <label for="taskName">
+                  <h5>Name </h5>
+                  <span><input type="text" id="nameInput"></span>
+                </label>
+                <hr>
+                <label for="taskTitle">
+                  <h5>Title </h5>
+                  <span><input type="text" id="titleInput"></span>
+                </label>
+                <hr>
+                <label for="taskDueTime">
+                  <h5>Due time</h5>
+                </label>
+
+                <br>
+
+                <input type="time" id="startTimeInput" name="endTime">
+                <input type="date" id="startDateInput" data-display-mode="inline" data-is-range="true"
+                  data-close-on-select="false">
+
+                To
+
+                <input type="time" id="dueTimeInput" name="endTime">
+                <input type="date" id="dueDateInput" data-display-mode="inline" data-is-range="true"
+                  data-close-on-select="false">
+                </label>
+                <br>
+
+                <div class="form-group">
+                  <label for="Detail" class="col-form-label"></label>
+                  <textarea class="form-control" id="description" placeholder="Description"
+                    onfocus="this.placeholder = ''"></textarea>
+                </div>
+
+
+                <h5 class="priority">
+                  <span id="priorityInput">Priority:
+                    <input type="radio" name="priority" id="green" class="css-button" value="Low">Low
+                    <input type="radio" name="priority" id="yellow" class="css-button2" value="Medium">Medium
+                    <input type="radio" name="priority" id="red" class="css-button3" value="High">High
+                  </span>
+                </h5>
+                <h5 class="assignTo">
+                  <span>Assign To:
+                    <input type="text" name="assignTo" id="assignTo">
+                  </span>
+                </h5>
+                <hr>
+
+                <div class="text-center">
+                  <button type="button" onclick="addNewTask()" class="btn btn-dark" form="modal-form">Submit</button>
+                </div>
+              </form>
+            </div>
           </div>
         </div>
       </div>
-    </div>
 
-    <script src="https://kit.fontawesome.com/e038b5dfcb.js" crossorigin="anonymous"></script>
-    <script src="js/taskManager.js"></script>
-    <script src="js/index.js"></script>
+
+      <div class="modal fade" id="changeTaskModal" tabindex="-1" aria-labelledby="changeTaskModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h2 class="taskForm-title" id="changeTaskModalLabel">Change Task</h2>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body d-flex justify-content-between">
+              <button type="button" class="close">
+              </button>
+            </div>
+
+            <div class="modal-body">
+              <form id="changeTaskModal-form">
+                <label for="taskName">
+                  <h5>Name </h5>
+                  <span><input type="text" id="nameValue"></span>
+                </label>
+                <hr>
+                <label for="taskTitle">
+                  <h5>Title </h5>
+                  <span><input type="text" id="titleValue"></span>
+                </label>
+                <hr>
+                <label for="taskDueTime">
+                  <h5>Due time</h5>
+                </label>
+
+                <br>
+
+                <input type="time" id="startTimeValue" name="endTime">
+                <input type="date" id="startDateValue" data-display-mode="inline" data-is-range="true"
+                  data-close-on-select="false">
+
+                To
+
+                <input type="time" id="dueTimeValue" name="endTime">
+                <input type="date" id="dueDateValue" data-display-mode="inline" data-is-range="true"
+                  data-close-on-select="false">
+                </label>
+                <br>
+
+                <div class="form-group">
+                  <label for="Detail" class="col-form-label"></label>
+                  <textarea class="form-control" id="descriptionValue" placeholder="Description"
+                    onfocus="this.placeholder = ''"></textarea>
+                </div>
+
+
+                <h5 class="priority">
+                  <span id="priorityValue">Priority:
+                    <input type="radio" name="priorityValue" id="green" class="css-button" value="Low">Low
+                    <input type="radio" name="priorityValue" id="yellow" class="css-button2" value="Medium">Medium
+                    <input type="radio" name="priorityValue" id="red" class="css-button3" value="High">High
+                  </span>
+                </h5>
+                <h5 class="assignTo">
+                  <span>Assign To:
+                    <input type="text" name="assignToValue" id="assignToValue">
+                  </span>
+                </h5>
+                <hr>
+
+                <div class="text-center">
+                  <button type="button" onclick="changeTaskValue()" class="btn btn-dark"
+                    form="changeTaskModal-form">Submit</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+      <script src="https://kit.fontawesome.com/e038b5dfcb.js" crossorigin="anonymous"></script>
+      <script src="js/taskManager.js"></script>
+      <script src="js/index.js"></script>
 </body>
 
 </html>
