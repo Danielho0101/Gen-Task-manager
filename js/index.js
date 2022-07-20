@@ -193,11 +193,14 @@ function changeTaskValue() {
 }
 function makeRequest() {
   xhr = new XMLHttpRequest();
-  xhr.onload = function () {
+
+  xhr.onload = function() {
+
     var response = JSON.parse(this.responseText);
     var city = response.city.name + ", " + response.city.country;
     var weatherTitle = response.list[0].weather[0].main;
     var temp = response.list[0].main.temp + "°";
+
     // console.log(response);
     var weatherContainer = document.querySelector("#weather");
     weatherContainer.innerHTML = city + "<br/>" + weatherTitle + "<br/>" + temp;
