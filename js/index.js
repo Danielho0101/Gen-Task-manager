@@ -18,7 +18,7 @@ const newTaskForm = document.querySelector("#modal-form");
 const newTaskNameInput = document.querySelector("#nameInput");
 const newTaskTitle = document.querySelector("#titleInput");
 const newTaskDescription = document.querySelector("#description");
-const newTaskStartTime = document.querySelector("#startTimeInput")
+const newTaskStartTime = document.querySelector("#startTimeInput");
 const newTaskStartDate = document.querySelector("#startDateInput");
 const newTaskDueTime = document.querySelector("#dueTimeInput");
 const newTaskDueDate = document.querySelector("#dueDateInput");
@@ -33,7 +33,7 @@ function addNewTask() {
   const startDate = newTaskStartDate.value;
   const dueTime = newTaskDueTime.value;
   const dueDate = newTaskDueDate.value;
-  let priority = '';
+  let priority = "";
   const assignedTo = newTaskAssignedTo.value;
 
   for (const radioButton of radioButtons) {
@@ -43,7 +43,8 @@ function addNewTask() {
     }
   }
 
-  if (validFormFieldInput(name) &&
+  if (
+    validFormFieldInput(name) &&
     validFormFieldInput(title) &&
     validFormFieldInput(startTime) &&
     validFormFieldInput(startDate) &&
@@ -51,14 +52,23 @@ function addNewTask() {
     validFormFieldInput(dueDate) &&
     validFormFieldInput(description) &&
     validFormFieldInput(priority) &&
-    validFormFieldInput(assignedTo)) {
-
-    $('#createTaskModal').modal('hide');
-    myTaskManager.addTask(name, title, startTime, startDate, dueTime, dueDate, description, priority, assignedTo);
+    validFormFieldInput(assignedTo)
+  ) {
+    $("#createTaskModal").modal("hide");
+    myTaskManager.addTask(
+      name,
+      title,
+      startTime,
+      startDate,
+      dueTime,
+      dueDate,
+      description,
+      priority,
+      assignedTo
+    );
     myTaskManager.render();
     clearFormInput();
-  }
-  else {
+  } else {
     alert("Please Enter All Data !!");
   }
 }
@@ -79,4 +89,78 @@ function deleteTask(id) {
 function getLocalData() {
   myTaskManager.getLocalData();
   myTaskManager.render();
+}
+
+const taskName = document.querySelector("#nameValue");
+const taskTitle = document.querySelector("#titleValue");
+const taskDescription = document.querySelector("#descriptionValue");
+const taskStartTime = document.querySelector("#startTimeValue");
+const taskStartDate = document.querySelector("#startDateValue");
+const taskDueTime = document.querySelector("#dueTimeValue");
+const taskDueDate = document.querySelector("#dueDateValue");
+const radioButtonsValue = document.querySelectorAll(
+  'input[name="priorityValue"]'
+);
+const taskAssignedTo = document.querySelector("#assignToValue");
+
+function getTaskValue(id) {
+  const task = myTaskManager.getTaskById(id);
+  taskName.value = task.name;
+  taskTitle.value = task.title;
+  taskDescription.value = task.description;
+  taskStartTime.value = task.startTime;
+  taskStartDate.value = task.startDate;
+  taskDueTime.value = task.dueTime;
+  taskDueDate.value = task.dueDate;
+  for (const radioButton of radioButtonsValue) {
+    if (radioButton.value === task.priority) {
+      radioButton.checked = true;
+      break;
+    }
+  }
+  taskAssignedTo.value = task.assignedTo;
+  window.sessionStorage.setItem("id", id);
+}
+
+function changeTaskValue() {
+  let priority;
+  let id = window.sessionStorage.getItem("id");
+  for (const radioButton of radioButtonsValue) {
+    if (radioButton.checked) {
+      priority = radioButton.value;
+      break;
+    }
+  }
+
+  myTaskManager.changeTask(
+    id,
+    taskName.value,
+    taskTitle.value,
+    taskStartTime.value,
+    taskStartDate.value,
+    taskDueTime.value,
+    taskDueDate.value,
+    taskDescription.value,
+    taskAssignedTo.value,
+    priority
+  );
+
+  if (validFormFieldInput(taskName.value) &&
+    validFormFieldInput(taskTitle.value) &&
+    validFormFieldInput(taskStartTime.value) &&
+    validFormFieldInput(taskStartDate.value) &&
+    validFormFieldInput(taskDueTime.value) &&
+    validFormFieldInput(taskDueDate.value) &&
+    validFormFieldInput(taskDescription.value) &&
+    validFormFieldInput(taskAssignedTo) &&
+    validFormFieldInput(priority)
+  ) {
+    $("#changeTaskModal").modal("hide");
+    window.sessionStorage.removeItem("id");
+    myTaskManager.render();
+  }
+  else {
+    alert("Please Enter All Data !!");
+  }
+
 }
