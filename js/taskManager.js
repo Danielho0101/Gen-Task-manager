@@ -226,8 +226,52 @@ class TaskManager {
         j++;
       } else {
         i++;
+
       }
+    //  console.log(storage);
     }
     // console.log("this.task = " + JSON.stringify(this.tasks));
+  }
+}
+
+function searchLocalData() {
+  let storage = window.localStorage;
+
+  let i = 0;
+  let j = 0;
+  let searchWord = document.querySelector('#search').value;
+  while (storage[i] || i < 100) {
+    if (storage[i] ) {
+      const parseTask = JSON.parse(storage[i]);
+      console.log(storage[i]);
+      console.log(storage[i].length);
+      console.log(searchWord);
+for (let k = 0; k < storage[i].length; k++) {
+if (searchWord === JSON.parse(storage[k])){
+  console.log(storage[k]);
+  var task = JSON.parse(parseTask[k]);
+    // const task = parseTask[k];
+    const taskHtml = createTaskHTML(
+      task.id,
+      task.name,
+      task.title,
+      task.startDate,
+      task.dueDate,
+      task.priority,
+      task.assignedTo
+    );
+    tasksHtmlList.push(taskHtml);
+    const tasksHtml = tasksHtmlList.join("\n");
+    // tasksList.innerHTML = tasksHtml;
+    var searchContainer = document.querySelector("#searchTaskList");
+    searchContainer.innerHTML = tasksHtml;
+    
+}
+};
+      i++;
+      j++;
+    } else {
+      i++;
+    }
   }
 }

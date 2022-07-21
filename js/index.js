@@ -201,9 +201,14 @@ function makeRequest() {
     var weatherTitle = response.list[0].weather[0].main;
     var temp ="<a style='font-size:65px;!importrant'>" +response.list[0].main.temp + "°"+ "</a>";
 
-if(weatherTitle =="Rain"){
+if(weatherTitle =="Rain") {
   weather =`<i class="fa-solid fa-cloud-sun-rain" style='font-size:65px;!importrant'></i>`;
   
+}else if(weatherTitle =="Clouds"){
+  weather =`<i class="fa-solid fa-cloud" style='font-size:65px;!importrant'></i>`
+
+}else {
+  weather = weatherTitle;
 }
 if(response.list[0].main.temp > 33){
   tempicon=`<i class="fa-solid fa-temperature-arrow-up"></i> `;
@@ -219,3 +224,9 @@ if(response.list[0].main.temp > 33){
   xhr.send();
 }
 makeRequest();
+
+
+// document.querySelector("#id-checkbox").addEventListener("click", function(event) {
+//   document.getElementById("output-box").innerHTML += "Sorry! <code>preventDefault()</code> won't let you check this!<br>";
+//   event.preventDefault();
+// }, false);
