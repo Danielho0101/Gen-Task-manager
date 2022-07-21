@@ -96,6 +96,7 @@ function validFormFieldInput(data) {
 function deleteTask(id) {
   myTaskManager.deleteTask(id);
   myTaskManager.render(currentTaskArea);
+  searchTask();
 }
 
 function getLocalData() {
@@ -158,20 +159,6 @@ function changeTaskValue() {
     }
   }
 
-  myTaskManager.changeTask(
-    id,
-    taskName.value,
-    taskTitle.value,
-    taskStartTime.value,
-    taskStartDate.value,
-    taskDueTime.value,
-    taskDueDate.value,
-    taskDescription.value,
-    taskAssignedTo.value,
-    priority,
-    taskStatus.value
-  );
-
   if (validFormFieldInput(taskName.value) &&
     validFormFieldInput(taskTitle.value) &&
     validFormFieldInput(taskStartTime.value) &&
@@ -184,8 +171,22 @@ function changeTaskValue() {
     validFormFieldInput(taskStatus.value)
   ) {
     $("#changeTaskModal").modal("hide");
+    myTaskManager.changeTask(
+      id,
+      taskName.value,
+      taskTitle.value,
+      taskStartTime.value,
+      taskStartDate.value,
+      taskDueTime.value,
+      taskDueDate.value,
+      taskDescription.value,
+      taskAssignedTo.value,
+      priority,
+      taskStatus.value
+    );
     window.sessionStorage.removeItem("id");
     myTaskManager.render(currentTaskArea);
+    searchTask();
   }
   else {
     alert("Please Enter All Data !!");
@@ -229,9 +230,5 @@ function searchTask() {
 }
 
 function clearSearch() {
-  myTaskManager.clearSearch();
+  myTaskManager.clearSearchResult();
 }
-// document.querySelector("#id-checkbox").addEventListener("click", function(event) {
-//   document.getElementById("output-box").innerHTML += "Sorry! <code>preventDefault()</code> won't let you check this!<br>";
-//   event.preventDefault();
-// }, false);

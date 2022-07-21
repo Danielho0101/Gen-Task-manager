@@ -34,7 +34,7 @@ h3 {
 #taskListArea {
     margin: 50px auto;
     width: 90vw;
-    height: 60vh;
+    height: 85vh;
     background-color: var(--todoBackgroundColor);
     border-radius: 16px;
 }
@@ -191,7 +191,6 @@ h3 {
     text-decoration: none;
     display: inline-block;
     font-size: 16px;
-    margin: 14px 8px;
     cursor: pointer;
     -webkit-transition-duration: 0.4s;
     transition-duration: 0.4s;

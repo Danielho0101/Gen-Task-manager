@@ -89,47 +89,28 @@ const searchTaskHTML = (
     color = "green";
   }
 
-  return `<div class="row align-items-start" style="margin-left:0px" data-task-id="${id}">
-  <div class="col-1 d-none d-md-block">
-    <div class="row ">
-      <div class="Name" style="margin-left:8px">
-        <p>${name}</p>
-      </div>
-    </div>
-  </div>
-  <div class="col-md-3 col-3">
+  return `<div class="row" style="margin-left:0px; justify-content:space-around" data-task-id="${id}">
+
+  <div class="col-3">
     <div class="row">
       <div class="listTask rounded taskListText">${title}</div>
     </div>
   </div>
-  <div class="col-2 d-none d-md-block">
+
+  <div class="col-3">
     <div class="row">
-      <div class=" listTask startDayBox taskListText">
-        <div class="startDay taskListText">${startDate}</div>
+      <div class="listPriority priorityBox rounded taskListText" style="background-color:${color}">
+        ${priority}</div>
+    </div>
+  </div>
+  <div class="col-3">
+    <div class="row">
+      <div class="assignToBox">
+        <div class="taskListText">${assignedTo}</div>
       </div>
     </div>
   </div>
-  <div class="col-2 d-none d-md-block">
-    <div class="row">
-      <div class="listTask dueDayBox taskListText">
-        <div class="dueDayTime taskListText">${dueDate}</div>
-      </div>
-    </div>
-  </div>
-  <div class="col-md-1 col-3">
-    <div class="row">
-      <div class="listPriority priorityBox rounded taskListText"
-      style="background-color:${color}">${priority}</div>
-    </div>
-  </div>
-  <div class="col-md-1 col-3">
-    <div class="row">
-      <div class=" col-12 assignToBox">
-        <div class="row taskListText">${assignedTo}</div>
-      </div>
-    </div>
-  </div>
-  <div class="col-md-2 col-3">
+  <div class="col-3">
     <div class="row" style="margin-right:0px;border-radius: 0px 12px 0px 0px;">
       <!-- not show in finial  -->
       <button style="border: none; background: none;" type="button" data-toggle="modal"
@@ -299,7 +280,6 @@ class TaskManager {
         j++;
       } else {
         i++;
-
       }
       //  console.log(storage);
     }
@@ -308,16 +288,16 @@ class TaskManager {
 
   searchLocalData() {
     const tasksHtmlList = [];
-
+    var searchContainer = document.querySelector("#searchTaskList");
     let searchWord = document.querySelector('#search').value;
-
+    searchContainer.innerHTML = "";
     for (let i = 0; i < this.tasks.length; i++) {
       const task = this.getTaskById(i);
       for (const key in task) {
         if (searchWord === task[key]) {
           // console.log(JSON.parse(storage[key]));
           // const task = parseTask[k];
-          const taskHtml = createTaskHTML(
+          const taskHtml = searchTaskHTML(
             task.id,
             task.name,
             task.title,
@@ -330,17 +310,15 @@ class TaskManager {
           tasksHtmlList.push(taskHtml);
           const tasksHtml = tasksHtmlList.join("\n");
           // tasksList.innerHTML = tasksHtml;
-          var searchContainer = document.querySelector("#searchTaskList");
           searchContainer.innerHTML = tasksHtml;
           break;
         }
       }
     }
-
   }
 
-  clearSearch() {
+  clearSearchResult() {
     const searchContainer = document.querySelector("#searchTaskList");
-    searchContainer.innerHTML = 'No Task Found';
+    searchContainer.innerHTML = '';
   }
 }
