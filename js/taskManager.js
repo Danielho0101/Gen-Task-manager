@@ -177,7 +177,6 @@ class TaskManager {
         foundTask = task;
       }
     }
-
     return foundTask;
   }
 
@@ -234,51 +233,40 @@ class TaskManager {
   }
 
   searchLocalData() {
-    let storage = window.localStorage;
     const tasksHtmlList = [];
-    let i = 0;
-    let j = 0;
-    let searchWord = document.querySelector('#search').value;
-    while (storage[i] || i < 50) {
-      if (storage[i]) {
-        const parseTask = JSON.parse(storage[i]);
-        console.log(storage[i]);
-        console.log(storage[i].length);
-        console.log(searchWord);
-        console.log(parseTask);
-        for (const key in parseTask) {
-          if (searchWord === parseTask[key]) {
-            // console.log(JSON.parse(storage[key]));
-            var task = parseTask;
-            // const task = parseTask[k];
-            const taskHtml = createTaskHTML(
-              task.id,
-              task.name,
-              task.title,
-              task.startDate,
-              task.dueDate,
-              task.priority,
-              task.assignedTo
-            );
 
-            tasksHtmlList.push(taskHtml);
-            const tasksHtml = tasksHtmlList.join("\n");
-            // tasksList.innerHTML = tasksHtml;
-            var searchContainer = document.querySelector("#searchTaskList");
-            searchContainer.innerHTML = tasksHtml;
-            break;
-          }
+    let searchWord = document.querySelector('#search').value;
+
+    for (let i = 0; i < this.tasks.length; i++) {
+      const task = this.getTaskById(i);
+      for (const key in task) {
+        if (searchWord === task[key]) {
+          // console.log(JSON.parse(storage[key]));
+          // const task = parseTask[k];
+          const taskHtml = createTaskHTML(
+            task.id,
+            task.name,
+            task.title,
+            task.startDate,
+            task.dueDate,
+            task.priority,
+            task.assignedTo
+          );
+
+          tasksHtmlList.push(taskHtml);
+          const tasksHtml = tasksHtmlList.join("\n");
+          // tasksList.innerHTML = tasksHtml;
+          var searchContainer = document.querySelector("#searchTaskList");
+          searchContainer.innerHTML = tasksHtml;
+          break;
         }
-        i++;
-        j++;
-      } else {
-        i++;
       }
     }
+
   }
 
   clearSearch() {
-    var searchContainer = document.querySelector("#searchTaskList");
-    searchContainer.innerHTML = '';
+    const searchContainer = document.querySelector("#searchTaskList");
+    searchContainer.innerHTML = 'No Task Found';
   }
 }
