@@ -177,7 +177,6 @@ class TaskManager {
         foundTask = task;
       }
     }
-
     return foundTask;
   }
 
@@ -213,7 +212,7 @@ class TaskManager {
 
     let i = 0;
     let j = 0;
-    while (storage[i] || i < 100) {
+    while (storage[i] || i < 50) {
       if (storage[i]) {
         const parseTask = JSON.parse(storage[i]);
         parseTask.id = j;
@@ -228,50 +227,46 @@ class TaskManager {
         i++;
 
       }
-    //  console.log(storage);
+      //  console.log(storage);
     }
     // console.log("this.task = " + JSON.stringify(this.tasks));
   }
-}
 
-function searchLocalData() {
-  let storage = window.localStorage;
+  searchLocalData() {
+    const tasksHtmlList = [];
 
-  let i = 0;
-  let j = 0;
-  let searchWord = document.querySelector('#search').value;
-  while (storage[i] || i < 100) {
-    if (storage[i] ) {
-      const parseTask = JSON.parse(storage[i]);
-      console.log(storage[i]);
-      console.log(storage[i].length);
-      console.log(searchWord);
-for (let k = 0; k < storage[i].length; k++) {
-if (searchWord === JSON.parse(storage[k])){
-  console.log(storage[k]);
-  var task = JSON.parse(parseTask[k]);
-    // const task = parseTask[k];
-    const taskHtml = createTaskHTML(
-      task.id,
-      task.name,
-      task.title,
-      task.startDate,
-      task.dueDate,
-      task.priority,
-      task.assignedTo
-    );
-    tasksHtmlList.push(taskHtml);
-    const tasksHtml = tasksHtmlList.join("\n");
-    // tasksList.innerHTML = tasksHtml;
-    var searchContainer = document.querySelector("#searchTaskList");
-    searchContainer.innerHTML = tasksHtml;
-    
-}
-};
-      i++;
-      j++;
-    } else {
-      i++;
+    let searchWord = document.querySelector('#search').value;
+
+    for (let i = 0; i < this.tasks.length; i++) {
+      const task = this.getTaskById(i);
+      for (const key in task) {
+        if (searchWord === task[key]) {
+          // console.log(JSON.parse(storage[key]));
+          // const task = parseTask[k];
+          const taskHtml = createTaskHTML(
+            task.id,
+            task.name,
+            task.title,
+            task.startDate,
+            task.dueDate,
+            task.priority,
+            task.assignedTo
+          );
+
+          tasksHtmlList.push(taskHtml);
+          const tasksHtml = tasksHtmlList.join("\n");
+          // tasksList.innerHTML = tasksHtml;
+          var searchContainer = document.querySelector("#searchTaskList");
+          searchContainer.innerHTML = tasksHtml;
+          break;
+        }
+      }
     }
+
+  }
+
+  clearSearch() {
+    const searchContainer = document.querySelector("#searchTaskList");
+    searchContainer.innerHTML = 'No Task Found';
   }
 }

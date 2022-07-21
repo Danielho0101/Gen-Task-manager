@@ -30,8 +30,10 @@
         <a class="navbar-brand" href="#">Task Planner</a>
         <div>
           <form class="form-inline my-2 my-lg-0">
-            <input class="form-control mr-sm-2" type="text" placeholder="Search  yors tasks..." aria-label="Search" id="search">
-            <button class="searchTaskButton" data-target="#searchTaskModal" data-toggle="modal" onclick="searchLocalData()"></button>
+            <input class="form-control mr-sm-2" type="text" placeholder="Search  yors tasks..." aria-label="Search"
+              id="search">
+            <button class="fa-solid fa-magnifying-glass toggle-btn searchTaskButton" type="button"
+              data-target="#searchTaskModal" data-toggle="modal" onclick="searchTask()"></button>
             <button class="navbar-toggler" style='margin-left:20px;' type="button" data-toggle="collapse"
               data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent"
               aria-expanded="false" aria-label="Toggle navigation">
@@ -225,22 +227,16 @@
       <div class="modal-content">
         <div class="modal-header">
           <h2 class="taskForm-title" id="searchTaskModalLabel">Search Task</h2>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <button type="button" onclick="clearSearch()" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
         <div class="modal-body d-flex justify-content-between">
-          <button type="button" class="close">
-          </button>
-        </div>
-
-        <div class="modal-body">
-          <div id="searchTaskList">Your Task</div>
+          <div id="searchTaskList">No Task Found</div>
         </div>
       </div>
     </div>
   </div>
-
 
   <div class="modal fade" id="changeTaskModal" tabindex="-1" aria-labelledby="changeTaskModalLabel" aria-hidden="true">
     <div class="modal-dialog">
