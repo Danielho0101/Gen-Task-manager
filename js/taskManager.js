@@ -71,6 +71,61 @@ const createTaskHTML = (
 </div>`;
 };
 
+const searchTaskHTML = (
+  id,
+  name,
+  title,
+  startDate,
+  dueDate,
+  priority,
+  assignedTo
+) => {
+  let color;
+  if (priority === "High") {
+    color = "red";
+  } else if (priority === "Medium") {
+    color = "yellow";
+  } else {
+    color = "green";
+  }
+
+  return `<div class="row" style="margin-left:0px; justify-content:space-around" data-task-id="${id}">
+
+  <div class="col-3">
+    <div class="row">
+      <div class="listTask rounded taskListText">${title}</div>
+    </div>
+  </div>
+
+  <div class="col-3">
+    <div class="row">
+      <div class="listPriority priorityBox rounded taskListText" style="background-color:${color}">
+        ${priority}</div>
+    </div>
+  </div>
+  <div class="col-3">
+    <div class="row">
+      <div class="assignToBox">
+        <div class="taskListText">${assignedTo}</div>
+      </div>
+    </div>
+  </div>
+  <div class="col-3">
+    <div class="row" style="margin-right:0px;border-radius: 0px 12px 0px 0px;">
+      <!-- not show in finial  -->
+      <button style="border: none; background: none;" type="button" data-toggle="modal"
+        data-target="#changeTaskModal" onclick="getTaskValue(${id})">
+        <img src="photo/tasksIcon/Vector0.png" style="width: 30px; height:30px">
+      </button>
+      <button style="border: none; background: none;" onclick="deleteTask(${id})">
+        <img src="photo/tasksIcon/Vector1.png" style="width: 30px; height:30px">
+      </button>
+    </div>
+  </div>
+</div>`;
+};
+
+
 class TaskManager {
   constructor(currentId = 0) {
     this.tasks = [];
@@ -242,7 +297,7 @@ class TaskManager {
         if (searchWord === task[key]) {
           // console.log(JSON.parse(storage[key]));
           // const task = parseTask[k];
-          const taskHtml = createTaskHTML(
+          const taskHtml = searchTaskHTML(
             task.id,
             task.name,
             task.title,

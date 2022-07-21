@@ -60,14 +60,10 @@
     <div id="weather" style="font-size:42px;color: white;margin-left:20px;"></div>
   </div>
 
+  <button style="margin-left:5%;" class="addTaskButton" data-target="#createTaskModal" data-toggle="modal">Add Task
+    +</button>
 
-
-  <button class="addTaskButton" data-target="#createTaskModal" data-toggle="modal">Add Task +</button>
-
-
-  </div>
-
-  <div id="taskListArea">
+  <div id="taskListArea" style="margin-top:1%;">
     <div class="taskListTitle">
       <div id="todoTitle" onclick="changeTaskListBackground(this)">
         <h3 class="titleText">Todo</h3>
@@ -81,9 +77,9 @@
 
     </div>
 
-    <div id="pendingArea">
+    <div id="pendingArea" style="margin-top:2%;">
 
-      <div id="rowtitle" class="row align-items-start" style="margin-left:0px">
+      <div id="rowtitle" class="row align-items-start" style="margin-top:0px;margin-left:0px">
 
         <div class="col-1 d-none d-md-block">
           <div class="row titleColour" style="border-radius: 12px 0px 0px 0px;border-left:2px">
@@ -235,6 +231,36 @@
           </button>
         </div>
         <div class="modal-body d-inline-block justify-content-between">
+          <div id="rowtitle" class="row align-items-start" style="margin-top:0px;margin-left:0px">
+
+            <div class="col-3">
+
+              <div class="row titleColour">
+                <p>Task</p>
+              </div>
+            </div>
+
+            <div class="col-3">
+              <div class="row titleColour">
+                <p>Priority</p>
+              </div>
+            </div>
+
+            <div class="col-3">
+              <div class="row titleColour">
+                <p>Assign</p>
+              </div>
+            </div>
+
+            <div class="col-3">
+              <div class="row" style="margin-right:0px;border-radius: 0px 12px 0px 0px;">
+                <!-- not show in finial  -->
+                <div class=" addDel col-12 titleColour">
+                  <p>Edit/Del</p>
+                </div>
+              </div>
+            </div>
+          </div>
           <div id="searchTaskList">No Task Found</div>
         </div>
       </div>
