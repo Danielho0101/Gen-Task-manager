@@ -208,7 +208,7 @@ function makeRequest() {
       weather = `<i class="fa-solid fa-cloud" style='font-size:65px;!importrant'></i>`
 
     } else {
-      weather = weatherTitle;
+      weather = `<i class="fas fa-sun"></i>`
     }
     if (response.list[0].main.temp > 33) {
       tempicon = `<i class="fa-solid fa-temperature-arrow-up"></i> `;
