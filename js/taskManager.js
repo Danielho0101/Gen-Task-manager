@@ -225,7 +225,6 @@ class TaskManager {
         j++;
       } else {
         i++;
-
       }
       //  console.log(storage);
     }
@@ -234,9 +233,9 @@ class TaskManager {
 
   searchLocalData() {
     const tasksHtmlList = [];
-
+    var searchContainer = document.querySelector("#searchTaskList");
     let searchWord = document.querySelector('#search').value;
-
+    searchContainer.innerHTML = "";
     for (let i = 0; i < this.tasks.length; i++) {
       const task = this.getTaskById(i);
       for (const key in task) {
@@ -256,17 +255,15 @@ class TaskManager {
           tasksHtmlList.push(taskHtml);
           const tasksHtml = tasksHtmlList.join("\n");
           // tasksList.innerHTML = tasksHtml;
-          var searchContainer = document.querySelector("#searchTaskList");
           searchContainer.innerHTML = tasksHtml;
           break;
         }
       }
     }
-
   }
 
-  clearSearch() {
+  clearSearchResult() {
     const searchContainer = document.querySelector("#searchTaskList");
-    searchContainer.innerHTML = 'No Task Found';
+    searchContainer.innerHTML = '';
   }
 }
