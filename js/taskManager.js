@@ -71,6 +71,80 @@ const createTaskHTML = (
 </div>`;
 };
 
+const searchTaskHTML = (
+  id,
+  name,
+  title,
+  startDate,
+  dueDate,
+  priority,
+  assignedTo
+) => {
+  let color;
+  if (priority === "High") {
+    color = "red";
+  } else if (priority === "Medium") {
+    color = "yellow";
+  } else {
+    color = "green";
+  }
+
+  return `<div class="row align-items-start" style="margin-left:0px" data-task-id="${id}">
+  <div class="col-1 d-none d-md-block">
+    <div class="row ">
+      <div class="Name" style="margin-left:8px">
+        <p>${name}</p>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-3 col-3">
+    <div class="row">
+      <div class="listTask rounded taskListText">${title}</div>
+    </div>
+  </div>
+  <div class="col-2 d-none d-md-block">
+    <div class="row">
+      <div class=" listTask startDayBox taskListText">
+        <div class="startDay taskListText">${startDate}</div>
+      </div>
+    </div>
+  </div>
+  <div class="col-2 d-none d-md-block">
+    <div class="row">
+      <div class="listTask dueDayBox taskListText">
+        <div class="dueDayTime taskListText">${dueDate}</div>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-1 col-3">
+    <div class="row">
+      <div class="listPriority priorityBox rounded taskListText"
+      style="background-color:${color}">${priority}</div>
+    </div>
+  </div>
+  <div class="col-md-1 col-3">
+    <div class="row">
+      <div class=" col-12 assignToBox">
+        <div class="row taskListText">${assignedTo}</div>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-2 col-3">
+    <div class="row" style="margin-right:0px;border-radius: 0px 12px 0px 0px;">
+      <!-- not show in finial  -->
+      <button style="border: none; background: none;" type="button" data-toggle="modal"
+        data-target="#changeTaskModal" onclick="getTaskValue(${id})">
+        <img src="photo/tasksIcon/Vector0.png" style="width: 30px; height:30px">
+      </button>
+      <button style="border: none; background: none;" onclick="deleteTask(${id})">
+        <img src="photo/tasksIcon/Vector1.png" style="width: 30px; height:30px">
+      </button>
+    </div>
+  </div>
+</div>`;
+};
+
+
 class TaskManager {
   constructor(currentId = 0) {
     this.tasks = [];
