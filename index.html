@@ -30,11 +30,13 @@
         <a class="navbar-brand" href="#">Task Planner</a>
         <div>
           <form class="form-inline my-2 my-lg-0">
-            <input class="form-control mr-sm-2" type="search" placeholder="Search  yors tasks..." aria-label="Search">
-            <button class="fa-solid fa-magnifying-glass toggle-btn"></button>
-            <button class="navbar-toggler" style='margin-left:20px;' type="button" data-toggle="collapse"
-              data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent"
-              aria-expanded="false" aria-label="Toggle navigation">
+            <input class="form-control mr-sm-2" type="text" placeholder="Search  yors tasks..." aria-label="Search"
+              id="search">
+            <button class="fa-solid fa-magnifying-glass toggle-btn searchTaskButton" data-target="#searchTaskModal"
+              data-toggle="modal" onclick="searchTask()"></button>
+            <button class="navbar-toggler" onclick="clearSearch()" style='margin-left:20px;' type="button"
+              data-toggle="collapse" data-target="#navbarToggleExternalContent"
+              aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
               <span class="navbar-toggler-icon"></span>
             </button>
           </form>
@@ -42,7 +44,7 @@
       </div>
     </nav>
 
-
+    <!-- <div id="weather" style="font-size:42px;color: white;margin-left:20px;"></div> -->
 
     <div class="container" style="display:flex; justify-content:flex-end;">
       <div class="collapse" id="navbarToggleExternalContent">
@@ -218,6 +220,22 @@
               <button type="button" onclick="addNewTask()" class="btn btn-dark" form="modal-form">Submit</button>
             </div>
           </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="searchTaskModal" tabindex="-1" aria-labelledby="searchTaskModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2 class="taskForm-title" id="searchTaskModalLabel">Search Task</h2>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body d-flex justify-content-between">
+          <div id="searchTaskList">Your Task</div>
         </div>
       </div>
     </div>
